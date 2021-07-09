@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+
+  const [state, setState] = useState({ name: 'mike', age: 30});
+  function increment() {
+    setState((prevState) =>  { return { ...prevState, age: prevState.age + 1}})
+  }
+
+  function decrement() {
+    setState(prevState => prevState.age + 1)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div> 
+    <h1>Hello, {state.name} has age of {state.age}</h1>
+    <button onClick={increment}>Increment</button>
+    <button onClick={decrement}>decrement</button>
     </div>
   );
 }
