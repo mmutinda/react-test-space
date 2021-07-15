@@ -1,40 +1,20 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function App() {
 
-  const [state, setState] = useState({ name: 'mike', age: 30});
-  const [count, setCount] = useState(1);
-  const [items, setItems] = useState([]);
-  function increment() {
-    setState((prevState) =>  { return { ...prevState, age: prevState.age + 1}})
-  }
-
-
-  function decrement() {
-    setCount(count + 1)
-    setState((prevState) =>  { return { ...prevState, name: `name ${count}`}})
-  }
+  const [name, setName] = useState('');
+  const prevName = useRef();
 
   useEffect(()=> {
-    console.log('fetching')
-    fetch('https://jsonplaceholder.typicode.com/todos')
-    .then(response => response.json())
-    .then(json => setItems(json))
-    return ()=> {
-      console.log('clean up')
-    }
-  },[state.age]);
+    //console.log('Component rendered');
+    prevName.current = name;
+  }, [name]) 
 
   return (
     <div> 
-    <h1>Hello, {state.name} has age of {state.age}</h1>
-    <button onClick={increment}>Increment</button>
-    <button onClick={decrement}>decrement</button>
-
-    { items.map( item => {
-      return (<pre> {JSON.stringify(item)}</pre>)
-    })}
+      <input value={name} onChange={e => setName(e.target.value)}/> 
+      <div>My name is {name} used to be { prevName.current } </div>
     </div>
   );
 }
