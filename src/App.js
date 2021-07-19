@@ -1,10 +1,12 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react';
+import useLogger from './useLocalStorage';
 
 function App() {
 
   const [name, setName] = useState('');
   const prevName = useRef();
+  useLogger(name);
 
   useEffect(()=> {
     //console.log('Component rendered');
