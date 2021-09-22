@@ -1,14 +1,14 @@
 
 import * as React from 'react';
 
-export const Child = ({ person }) => {
+export const Child = ({count}) => {
     
     console.log('Child renders');
+    console.log(count);
+    
     return(
         <div>
-            Child component { person.name }
+            Child component  
         </div>
     )
 }
-
-export const MemoizedChild = React.memo(Child);
