@@ -5,11 +5,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-App.whyDidYouRender = true;
-ReactDOM.render(
-    <App />,
-  document.getElementById('root')
-);
 ReactDOM.render(
     <App />,
   document.getElementById('root')
